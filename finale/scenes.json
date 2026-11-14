@@ -1,0 +1,118 @@
+{
+  "style": "Cinematic matte painting for a natural history documentary, painterly realism, atmospheric haze and volumetric light, rich but muted palette, deep shadows, subjects partly silhouetted against a luminous sky, wide 16:9 composition, fine film grain. No text, no watermark.",
+  "negative": "text, watermark, logo, subtitles, cartoon, anime, childish, ugly, video game, deformed anatomy, extra limbs, modern objects",
+  "scenes": [
+    {
+      "id": "01",
+      "slug": "first_steps",
+      "seed": 36502,
+      "still": "Late Devonian river delta at dawn, 365 million years ago. A giant salamander, about one metre long, with smooth glistening skin, a wide flat head and short sprawling legs, crawls out of shallow weedy water onto a muddy bank, its long finned tail still in the water. Like a Japanese giant salamander, low to the ground, belly touching the mud. Primitive trees with feathery fern-like foliage stand on the misty shore. No flowers, no grass. Warm orange sunrise mist over the water.",
+      "motion": "The giant salamander slowly drags itself forward out of the shallow water onto the mud on short sprawling legs, belly sliding over the mud, water dripping from its smooth skin. Ripples spread, mist drifts between the trees. Slow, steady push-in camera. No other animals."
+    },
+    {
+      "id": "02",
+      "slug": "coal_forests",
+      "seed": 3251,
+      "still": "Carboniferous coal swamp forest, 325 million years ago. Towering Lepidodendron and Sigillaria trees with diamond-patterned bark and tufted grassy crowns, giant horsetails, tree ferns, still black swamp water, green mist pierced by shafts of light. A giant dragonfly with a long slender body and four huge transparent veined wings, 70 centimetres across, hovers in a light shaft. No flowers, no grass, no birds.",
+      "motion": "The giant dragonfly glides slowly through the shafts of light, its four transparent wings shimmering. Mist drifts over the black water, fronds sway gently. Slow lateral tracking shot through the trunks."
+    },
+    {
+      "id": "03",
+      "slug": "amniote_egg",
+      "seed": 3121,
+      "still": "Ground-level close view of a Carboniferous forest floor, 312 million years ago. A small slender lizard-like animal, about 20 centimetres long, with smooth scaly skin and a long tail, rests on a fallen moss-covered log beside a small clutch of four leathery white eggs. Ferns and fallen bark, soft green light, shallow depth of field.",
+      "motion": "The small reptile-like animal breathes, turns its head and flicks its tongue near its eggs. Dust motes float through the soft light. Very slow, subtle push-in."
+    },
+    {
+      "id": "04",
+      "slug": "synapsid",
+      "seed": 29502,
+      "still": "Early Permian floodplain at golden hour, 295 million years ago. Dimetrodon: a three-metre low-slung reptile-like animal with a SHORT neck, a large deep head full of sharp teeth, a long tail, legs sprawling out to the sides like a crocodile, belly close to the ground, and a tall fan-shaped sail of spines rising from its back. It walks across red earth beside a dry riverbed. Conifers and seed ferns. Warm dusty backlight makes the sail glow.",
+      "motion": "Dimetrodon walks slowly from left to right with a sprawling gait, its backlit sail glowing orange. Dust rises from its feet. The camera tracks slowly alongside."
+    },
+    {
+      "id": "05",
+      "slug": "great_dying",
+      "seed": 2521,
+      "still": "End-Permian catastrophe, 252 million years ago. On the horizon the vast fissure eruptions of the Siberian Traps: long curtains of lava and towering ash clouds lit red from below. Dead leafless trees, barren cracked ground, falling ash. In the foreground a small low-slung furry animal the size of a small dog, with whiskers and a pointed snout, a mammal-like reptile called a cynodont, peers out of a burrow in the ground.",
+      "motion": "Lava fountains pulse along the horizon, ash falls slowly and smoke billows upward. The small cynodont retreats into its burrow. Slow push-in."
+    },
+    {
+      "id": "06",
+      "slug": "mammals_night",
+      "seed": 2051,
+      "still": "Late Triassic night, 205 million years ago, under a bright moon and a sky full of stars. In the foreground on a fallen log, a tiny shrew-like furry mammal with large dark eyes catching the moonlight. In the distance, the dark silhouettes of long-necked plant-eating dinosaurs standing on two legs among cycads and conifers. Cold blue moonlight.",
+      "motion": "The tiny furry mammal sniffs the air and scurries along the log, its eyes shining. The distant dinosaurs move slowly. Moonlit clouds drift. Slow push-in."
+    },
+    {
+      "id": "07",
+      "slug": "flowers",
+      "seed": 1251,
+      "still": "Early Cretaceous lakeshore, 125 million years ago. Some of the earliest flowering plants, small simple pale flowers, grow at the water's edge among ferns, cycads and ginkgo trees. A small shrew-like early mammal forages among the flowers in soft morning light, and a small feathered dinosaur stands in the distance. Tiny insects hover.",
+      "motion": "Flowers sway in a light breeze, tiny insects drift through the light, the small mammal forages and looks up. Light shimmers on the lake. Slow, gentle camera drift."
+    },
+    {
+      "id": "08",
+      "slug": "impact",
+      "seed": 661,
+      "still": "Late Cretaceous coastal plain, 66 million years ago. A blazing asteroid fireball streaks across the sky toward the horizon, trailing fire and smoke, casting an eerie orange light. In the foreground, the silhouettes of a Tyrannosaurus and a small herd of Triceratops look up. Ominous, awe-inspiring.",
+      "motion": "The fireball descends behind the distant horizon and a blinding white flash erupts, followed by an enormous rising wall of fire and dust spreading along the horizon. The dinosaurs turn away. The camera shakes slightly."
+    },
+    {
+      "id": "09",
+      "slug": "primates",
+      "seed": 551,
+      "still": "Early Eocene tropical forest canopy, 55 million years ago, humid mist and warm green light. A tiny tarsier-like early primate, mouse-sized, with huge forward-facing eyes, grasping fingers and a long thin tail, clings to a mossy branch among large glossy leaves.",
+      "motion": "The tiny primate climbs along the branch with its grasping hands and turns to look around with its large eyes. Leaves drip, mist drifts through the canopy. Slow push-in."
+    },
+    {
+      "id": "10",
+      "slug": "fork",
+      "seed": 7002,
+      "still": "Late Miocene African woodland edge at golden hour, 7 million years ago, with scattered trees and tall grasses. An early ape sits at the edge of the forest, mostly silhouetted against the low sun, looking out toward the open land. Warm dust hangs in the air. Untouched wilderness, no vehicles, no buildings, no people.",
+      "motion": "The ape slowly rises and looks out toward the open grassland. Grass sways in the wind, dust glows in the low sunlight. Slow push-in."
+    },
+    {
+      "id": "11",
+      "slug": "walking_upright",
+      "seed": 32,
+      "still": "Pliocene East Africa, 3.2 million years ago. Two short ape-like hominins covered in dark hair, about 1.1 metres tall, with ape-like faces, small heads and long arms, walk upright on two legs side by side away from the camera across a plain of fresh grey volcanic ash, leaving a trail of footprints. A smoking volcano in the distance, acacia-like trees, golden backlight, mostly silhouetted.",
+      "motion": "The two hominins walk slowly away across the ash, footprints forming behind them. Smoke drifts from the distant volcano. The camera follows slowly."
+    },
+    {
+      "id": "12",
+      "slug": "stone_and_fire",
+      "seed": 18,
+      "still": "Homo erectus, 1.8 million years ago: a tall early human seen in dark silhouette against a dramatic dusk sky, with a heavy brow ridge, holding a stone hand axe, standing on a rocky ridge overlooking a vast African savanna. Warm last light on the horizon.",
+      "motion": "Homo erectus walks forward along the ridge, wind moving through the grass, clouds drifting across the dusk sky. Slow tracking shot."
+    },
+    {
+      "id": "13",
+      "slug": "homo_sapiens",
+      "seed": 300,
+      "still": "Night, a small group of early Homo sapiens hunter-gatherers wearing animal-hide clothing, sitting around a campfire at the mouth of a rock shelter, mostly silhouetted, faces lit warmly by the fire. Red ochre hand stencils on the rock wall. The Milky Way arcs overhead.",
+      "motion": "Firelight flickers across faces and the painted rock wall, sparks rise toward the stars, the people talk and gesture. Slow push-in."
+    },
+    {
+      "id": "14",
+      "slug": "seeds_and_cities",
+      "seed": 12,
+      "still": "Golden wheat field swaying at dusk in the foreground, gentle hills, and far away on the horizon a modern city skyline glowing with lights beneath the first stars. A sense of ten thousand years passing in one view.",
+      "motion": "The wheat sways in the wind while the sky darkens from dusk to night and the distant city lights twinkle on one by one. Slow push-in."
+    },
+    {
+      "id": "15",
+      "slug": "earth_today",
+      "seed": 1,
+      "still": "Planet Earth seen from orbit, half in daylight and half in night, the night side glowing with networks of city lights, thin blue atmosphere on the horizon, clouds over oceans, black space with stars.",
+      "motion": "Earth rotates slowly, the line between day and night moves, city lights twinkle, clouds drift. Slow, smooth camera drift."
+    },
+    {
+      "id": "16",
+      "slug": "tree_of_life",
+      "seed": 42,
+      "still": "An immense luminous tree of life made of glowing threads of light, branching outward from a single bright point at its root, floating in deep dark space. Countless tiny glowing leaves of light in teal, violet and amber. Ethereal, awe-inspiring, abstract.",
+      "motion": "Branches of light grow and spread outward from the bright point, glowing particles drifting along them. Slow pull-back revealing the whole tree."
+    }
+  ]
+}
