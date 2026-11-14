@@ -984,6 +984,47 @@ function ostracodSprite(v) {
   });
 }
 /* soft, living decor: stromatolites, microbial mats, cyanobacterial colonies */
+function bifSprite(d) {
+  const r = Math.round(d.r / 10) * 10;
+  return mkSprite('bif' + (d.s | 0) % 7 + '_' + r, r * 2.4 + 30, (g, R) => {
+    const ax = r, ay = r * (.42 + R() * .12), N = 90, edge = [], p1 = R() * TAU, p2 = R() * TAU, p3 = R() * TAU;
+    for (let i = 0; i < N; i++) { const a = i / N * TAU, n = 1 + Math.sin(a * 2 + p1) * .08 + Math.sin(a * 5 + p2) * .04 + Math.sin(a * 13 + p3) * .015 + (R() - .5) * .012;
+      edge.push([Math.cos(a) * ax * n, Math.sin(a) * ay * n]); }
+    const outline = () => { g.beginPath(); edge.forEach(([px, py], i) => i ? g.lineTo(px, py) : g.moveTo(px, py)); g.closePath(); };
+    // soft shadow on the seafloor
+    g.save(); g.translate(4, 7); g.filter = 'blur(6px)'; outline(); g.fillStyle = 'rgba(0,0,0,.45)'; g.fill(); g.restore(); g.filter = 'none';
+    g.save(); outline(); g.clip();
+    g.fillStyle = '#2b2422'; g.fillRect(-ax * 1.3, -ay * 1.5, ax * 2.6, ay * 3);
+    // folded bands: wavy layers of red jasper, dark hematite and pale chert
+    const fold = R() * TAU, amp = ay * (.12 + R() * .15), cols = [[138, 64, 46], [54, 54, 62], [150, 80, 56], [104, 100, 98], [120, 56, 42], [46, 46, 54], [126, 70, 52], [86, 84, 86]];
+    let yy = -ay * 1.35, k = 0;
+    while (yy < ay * 1.35) {
+      const th = 1.5 + R() * R() * 9, c = cols[(k++ * 3 + (R() * 2 | 0)) % cols.length], sh = (R() - .5) * 30;
+      const cc = [c[0] + sh, c[1] + sh * .5, c[2] + sh * .4], wv = (xx, o) => yy + o + Math.sin(xx / ax * 2.2 + fold) * amp + Math.sin(xx / ax * 6 + fold * 2 + k) * amp * .15;
+      g.beginPath(); for (let xx = -ax * 1.1; xx <= ax * 1.1; xx += 6) g.lineTo(xx, wv(xx, 0));
+      for (let xx = ax * 1.1; xx >= -ax * 1.1; xx -= 6) g.lineTo(xx, wv(xx, th + .6));
+      g.closePath(); g.fillStyle = rgba(cc, .9); g.fill();
+      if (c[0] < 80) { g.strokeStyle = 'rgba(190,200,215,.22)'; g.lineWidth = .6; g.beginPath(); for (let xx = -ax * 1.1; xx <= ax * 1.1; xx += 6) g.lineTo(xx, wv(xx, th * .3)); g.stroke(); } // metallic sheen
+      yy += th;
+    }
+    // micro-laminae, speckle and grit
+    for (let i = 0; i < r * 3; i++) { g.fillStyle = R() < .5 ? `rgba(15,10,10,${R() * .35})` : `rgba(230,170,130,${R() * .18})`; g.fillRect((R() - .5) * ax * 2.2, (R() - .5) * ay * 2.2, 1 + R() * 2, .6 + R()); }
+    // rounded relief: lit upper-left, shaded lower-right, worn top surface
+    let sg = g.createLinearGradient(-ax * .4, -ay, ax * .4, ay); sg.addColorStop(0, 'rgba(255,220,190,.18)'); sg.addColorStop(.45, 'rgba(0,0,0,0)'); sg.addColorStop(1, 'rgba(5,10,15,.55)');
+    g.fillStyle = sg; g.fillRect(-ax * 1.3, -ay * 1.5, ax * 2.6, ay * 3);
+    sg = g.createRadialGradient(0, 0, ay * .2, 0, 0, ax * 1.05); sg.addColorStop(0, 'rgba(0,0,0,0)'); sg.addColorStop(.75, 'rgba(0,0,0,0)'); sg.addColorStop(1, 'rgba(8,14,18,.6)');
+    g.fillStyle = sg; g.fillRect(-ax * 1.3, -ay * 1.5, ax * 2.6, ay * 3);
+    // fine silt settled on top
+    for (let i = 0; i < 40; i++) { g.fillStyle = `rgba(120,150,150,${R() * .12})`; g.beginPath(); g.arc((R() - .5) * ax * 2, (R() - .5) * ay * 2, 2 + R() * 6, 0, TAU); g.fill(); }
+    g.restore();
+    outline(); g.strokeStyle = 'rgba(10,8,8,.5)'; g.lineWidth = 1.2; g.stroke();
+    // loose fragments and rust sediment around the base
+    for (let i = 0; i < 9; i++) { const a = R() * TAU, rr = 1.05 + R() * .25, px = Math.cos(a) * ax * rr, py = Math.sin(a) * ay * rr, pr = 1.5 + R() * 4;
+      g.fillStyle = R() < .5 ? 'rgba(150,62,38,.7)' : 'rgba(58,54,60,.7)'; g.beginPath(); g.ellipse(px, py, pr, pr * .6, R() * TAU, 0, TAU); g.fill(); }
+    const sed = g.createRadialGradient(0, 0, ax * .8, 0, 0, ax * 1.15); sed.addColorStop(0, 'rgba(150,70,40,0)'); sed.addColorStop(.5, 'rgba(150,70,40,.08)'); sed.addColorStop(1, 'rgba(150,70,40,0)');
+    g.globalCompositeOperation = 'destination-over'; g.fillStyle = sed; g.beginPath(); g.ellipse(0, 0, ax * 1.15, ay * 1.6, 0, 0, TAU); g.fill(); g.globalCompositeOperation = 'source-over';
+  });
+}
 function stromaSprite(d) {
   return mkSprite('st' + (d.s | 0) + '_' + (d.r | 0), d.r * 2.5 + 24, (g, R) => {
     const r = d.r;
@@ -1365,9 +1406,13 @@ function drawDecor(d, t) {
       blit(stromaSprite(d), x, y, d.a, 1 + Math.sin(t * .6 + d.s) * .015);
       break; }
     case 'rust': {
-      cx.save(); cx.translate(x, y); cx.rotate(d.a);
-      for (let i = 0; i < 5; i++) { cx.fillStyle = i % 2 ? 'rgba(150,60,30,.18)' : 'rgba(60,60,70,.15)'; cx.fillRect(-r, -r * .5 + i * r * .2, r * 2, r * .2); }
-      cx.restore(); break; }
+      // banded iron formation: seafloor rock striped with rusty jasper and dark hematite
+      glow(x, y, r * 1.4, [190, 80, 40], .05);
+      cx.globalAlpha = .62; blit(bifSprite(d), x, y, d.a); cx.globalAlpha = 1;
+      { const R = mulberry(d.s | 0); for (let i = 0; i < 7; i++) { // iron-oxide flakes settling out of the water
+        const ph = (t * (.04 + R() * .03) + R()) % 1, fx = x + (R() - .5) * r * 1.6 + Math.sin(t * .5 + i) * 6, fy = y - r * .7 + ph * r * 1.2;
+        cx.fillStyle = `rgba(220,120,70,${.35 * Math.sin(ph * Math.PI)})`; cx.beginPath(); cx.arc(fx, fy, 1.2, 0, TAU); cx.fill(); } }
+      break; }
     case 'mat': {
       glow(x, y, r * 1.3, [130, 220, 150], .07 + Math.sin(t * .7 + d.s) * .03);
       cx.globalAlpha = .85 + Math.sin(t * .9 + d.s) * .12;
