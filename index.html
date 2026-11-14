@@ -741,8 +741,24 @@ function drawPlayer(t) {
     cx.save(); cx.translate(p.x, p.y); cx.rotate(p.a);
     glow(0, 0, 70, [150, 230, 200], .18);
     for (const s of [-1, 1]) { const P = []; for (let i = 0; i <= 22; i++) { const u = i / 22; P.push([-(st.r * .9 + u * 38), s * 5 + Math.sin(u * 8 - t * 12 + s) * 5 * u + s * u * 8]); } tube(P, 2, .5, 'rgba(190,255,230,.14)', 'rgba(225,255,242,.8)'); }
-    FB = m0 ? { a: fa - p.a, k: reach } : null; blobPath(0, 0, st.r * gr, t * .6, .09, 3, 5, 44); FB = null;
+    // phagocytosis: the cell's own outline flows out into a food cup around the prey, then closes over it
+    let L = 0, gw = 0, ap = 0;
+    if (m0 && m0.kind === 'phago') {
+      const ss = (a, b, x) => { const u = clamp((x - a) / (b - a), 0, 1); return u * u * (3 - 2 * u); };
+      ap = fa - p.a; const dp = Math.hypot(m0.f.x - p.x, m0.f.y - p.y), fr = 9 * m0.s;
+      L = Math.max(0, dp + fr * .95 - st.r) * 1.15 * (mk < .5 ? ss(0, .22, mk) : 1);
+      gw = .52 * (1 - ss(.12, .5, mk));
+    }
+    const bump = (D, w) => D < w ? .5 * (1 + Math.cos(Math.PI * D / w)) : 0;
+    cx.beginPath();
+    for (let i = 0; i <= 96; i++) {
+      const th = i / 96 * TAU; let rr = blobR(st.r * gr, t * .6, .09, 3, 5, th);
+      if (L > 0) { const D = Math.abs(angDiff(th, ap)); rr += L * bump(D, .75) * (1 - bump(D, gw)); }
+      i ? cx.lineTo(Math.cos(th) * rr, Math.sin(th) * rr) : cx.moveTo(Math.cos(th) * rr, Math.sin(th) * rr);
+    }
+    cx.closePath();
     cx.fillStyle = 'rgba(70,150,125,.2)'; cx.fill();
+    if (L > 0) clipBlit(cytoSprite('eukpod', st.r * 2.4, [[228, 252, 238], [120, 200, 175], [50, 128, 108]], { ves: 6, vcol: [235, 255, 210] }), 0, 0, 0, 1);
     clipBlit(cytoSprite('euk', st.r, [[228, 252, 238], [120, 200, 175], [50, 128, 108]], { ves: 9, vcol: [235, 255, 210], er: true }), 0, 0, -t * .05, 1);
     membrane([200, 255, 235], 1, 1.1);
     blit(nucleusSprite('euk', 7.5, [110, 100, 190]), -3, 1, t * .05, 1);
@@ -1601,19 +1617,9 @@ function drawFeeding(t) {
   for (const m of G.meals) {
     const k = clamp(m.t / m.dur, 0, 1), f = m.f, fr = 5 * m.s + 2;
     const a = Math.atan2(f.y - p.y, f.x - p.x);
-    if (m.kind === 'phago') { // pseudopods flow around the prey and close behind it
-      const grow = clamp(k / .5, 0, 1), fade = k < .5 ? 1 : 1 - (k - .5) / .5;
-      for (const s of [-1, 1]) {
-        const bx = p.x + Math.cos(a + s * .8) * R * .85, by = p.y + Math.sin(a + s * .8) * R * .85;
-        const sx = f.x + Math.cos(a + s * Math.PI / 2) * (fr + 7), sy = f.y + Math.sin(a + s * Math.PI / 2) * (fr + 7);
-        const ex = f.x + Math.cos(a + s * .25) * (fr + 4), ey = f.y + Math.sin(a + s * .25) * (fr + 4);
-        const qx = 2 * sx - (bx + ex) / 2, qy = 2 * sy - (by + ey) / 2, P = [];
-        for (let i = 0; i <= 16; i++) { const u = i / 16 * grow, iu = 1 - u; P.push([iu * iu * bx + 2 * iu * u * qx + u * u * ex, iu * iu * by + 2 * iu * u * qy + u * u * ey]); }
-        const wd = 6.5 * fade + 1.5;
-        cx.lineCap = 'round'; cx.lineJoin = 'round';
-        cx.strokeStyle = 'rgba(230,255,245,.85)'; cx.lineWidth = wd + 2.4; strokePoly(P);
-        cx.strokeStyle = 'rgba(140,208,184,.95)'; cx.lineWidth = wd; strokePoly(P);
-      }
+    if (m.kind === 'phago') { // once the food cup closes, the prey sits in a food vacuole (phagosome)
+      const c = clamp((k - .4) / .15, 0, 1);
+      if (c > 0) { cx.fillStyle = `rgba(205,255,232,${.13 * c})`; cx.beginPath(); cx.arc(f.x, f.y, fr + 3.5, 0, TAU); cx.fill(); cx.strokeStyle = `rgba(232,255,246,${.65 * c})`; cx.lineWidth = .9; cx.stroke(); }
     } else if (m.kind === 'tentacle') { // protrusions reach out and coil around the partner
       const reachK = clamp(k / .28, 0, 1), coil = clamp((k - .2) / .3, 0, 1);
       for (const s of [-1, 1]) {
