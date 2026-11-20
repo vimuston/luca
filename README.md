@@ -5,7 +5,7 @@ A browser game about 4.2 billion years of evolution. You start as LUCA, the Last
 **Play:** https://vimuston.github.io/luca/
 
 - Single file (`index.html`), with no build step and no dependencies
-- Control: mouse, touch, or WASD/arrow keys. `P` pauses, `M` mutes the music
+- Mobile, touch-only: press anywhere and pull to swim (floating joystick). Leaving the app pauses; tap to resume
 - Music and sound effects are generated live with the Web Audio API
 - Dev shortcuts: open `index.html#eukaryote` (or any stage key) to start at that stage, or run `jump('tiktaalik')` in the console
 
